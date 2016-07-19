@@ -1,0 +1,35 @@
+<project name="add" default="run" basedir=".">
+ <property name="tomcat.home" value="C:/Program Files/Apache Software Foundation/Apache Tomcat 6.0.26/" />
+  <target name="clean">
+  <delete dir="build"/>
+  </target>
+
+  <target name="prepare" depends="clean">
+  <mkdir dir="build"/>
+  </target>
+
+  <target name="compile" depends="prepare">
+  <javac srcdir="src" destdir="build" debug="on" optimize="on"/>  
+  </target>
+
+  <target name="run" depends="compile">
+  <java fork="true" failonerror="yes" classname="Abc" classpath="build">  
+  
+  </java>
+  </target>
+
+  <target name="tomcat-start" >
+    <java classname="org.apache.catalina.startup.Bootstrap" fork="true">
+    	<classpath path="${tomcat.home}/bin/bootstrap.jar:${tomcat.home}/bin/tomcat-juli.jar" />
+        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+    </java>
+</target>
+
+<target name="tomcat-stop">
+    <java classname="org.apache.catalina.startup.Bootstrap" fork="true">
+    <classpath path="${tomcat.home}/bin/bootstrap.jar:${tomcat.home}/bin/tomcat-juli.jar" />
+        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+        <arg line="stop"/>
+    </java>
+</target>
+</project>

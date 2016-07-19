@@ -1,0 +1,67 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.5.25a
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema bank
+--
+
+CREATE DATABASE IF NOT EXISTS bank;
+USE bank;
+
+--
+-- Definition of table `useraccount`
+--
+
+DROP TABLE IF EXISTS `useraccount`;
+CREATE TABLE `useraccount` (
+  `name` varchar(25) DEFAULT NULL,
+  `Designation` varchar(25) DEFAULT NULL,
+  `email` varchar(25) DEFAULT NULL,
+  `phon` varchar(20) DEFAULT NULL,
+  `Address` varchar(100) DEFAULT NULL,
+  `pin` varchar(20) DEFAULT NULL,
+  `Acno` varchar(20) NOT NULL DEFAULT '',
+  `total` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`Acno`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `useraccount`
+--
+
+/*!40000 ALTER TABLE `useraccount` DISABLE KEYS */;
+INSERT INTO `useraccount` (`name`,`Designation`,`email`,`phon`,`Address`,`pin`,`Acno`,`total`) VALUES 
+ ('mimi','mimi','mim@g.cm','1234567890','dsdas','123456','1118','18947'),
+ ('k','k','k@k.cm','1234567890','jkljkl','123456','1171','19122'),
+ ('arun','IT','a@g.com','1234567890','jljlkjl','123456','1573','0'),
+ ('A','A','A@A.CM','1234567890','dfsfds','123456','1601','0'),
+ ('kasi','B.Tech','kasi@info.in','1234567890','jhjdhjsdhsjdhsjdh','123456','1671','0'),
+ ('k','k','k@k.cm','1234567890','jkljkl','123456','1681','0'),
+ ('mimi','mimi','mim@g.cm','1234567890','dsdas','123456','1695','0'),
+ ('k','k','k@k.cm','1234567890','jkljkl','123456','1712','0'),
+ ('a','a','a@g.cm','9090909090','a','123456','1888','0');
+/*!40000 ALTER TABLE `useraccount` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

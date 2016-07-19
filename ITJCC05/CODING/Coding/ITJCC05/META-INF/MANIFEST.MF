@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ITJCC05
+Bundle-SymbolicName: ITJCC05
+Bundle-Version: 1.0.0.qualifier
+Export-Package: CSP
+Import-Package: javax.xml.rpc

@@ -1,0 +1,654 @@
+
+package Master;
+
+import Database.Dbconnection;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import javax.swing.JOptionPane;
+
+public class Server extends javax.swing.JFrame implements Runnable {
+
+       private List work()
+      {
+           List lis=new ArrayList();
+            Map mp=new TreeMap();
+            String work = null;
+         Dbconnection dbase=Dbconnection.getconnect();
+        Connection con=dbase.validation();
+        try
+        {
+          Statement  stmt=con.createStatement();
+          ResultSet rs=stmt.executeQuery("select * from onuser where uname='"+s_user+"'");
+          String clientip = null;
+          while(rs.next())
+            {
+             mp.put(rs.getString(1).toString().trim(), rs.getString(2).toString().trim());
+              clientip=rs.getString(3).toString().trim();
+
+
+            }
+
+            String value=(String) mp.get(s_user);
+           // System.out.println("value is "+value);
+            int port =Integer.parseInt(value);
+
+            try
+            {
+                so=new Socket(clientip,port);
+                ObjectOutputStream oos=new ObjectOutputStream(so.getOutputStream());
+                 work=JOptionPane.showInputDialog(rootPane,"Enter File Name" );
+                String wrdscrp=JOptionPane.showInputDialog("Enter work discrption");
+                List li=new ArrayList();
+                li.add(work);
+                li.add(wrdscrp+" file name :"+work);
+                oos.writeObject(li);
+              
+
+            }catch(IOException ei)
+            {
+                ei.printStackTrace();
+            }
+
+        }
+        catch(SQLException sql)
+        {
+            sql.printStackTrace();
+        }
+        lis.add(s_user);
+        lis.add(work);
+        lis.add("pending");
+          return lis;
+      }
+    public Server() {
+        initComponents();
+        try
+        {
+        InetAddress servip=InetAddress.getLocalHost();
+        String ipdress=servip.getHostAddress();
+        sip.setText("Server IP : "+ipdress);
+        }catch(UnknownHostException unkhs)
+        {System.out.println(unkhs);}
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        list1 = new java.awt.List();
+        jLabel2 = new javax.swing.JLabel();
+        sip = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        list2 = new java.awt.List();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        filename = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        wrkdsp = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Monospaced", 1, 14));
+        jLabel1.setText("MASTER");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(134, 11, 48, 20);
+
+        list1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list1MouseClicked(evt);
+            }
+        });
+        list1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                list1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(list1);
+        list1.setBounds(430, 120, 71, 111);
+
+        jLabel2.setText("AVAILABLE");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(430, 100, 53, 14);
+
+        sip.setText("jLabel3");
+        jPanel1.add(sip);
+        sip.setBounds(10, 48, 191, 14);
+
+        jButton1.setText("STATIC");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(500, 200, 90, 23);
+
+        jLabel3.setText("WORK STATUS");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(260, 100, 100, 14);
+        jPanel1.add(list2);
+        list2.setBounds(260, 120, 90, 110);
+
+        jButton2.setText("DYNAMIC");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(510, 130, 90, 23);
+
+        jButton3.setText("REFRESH");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
+        jButton3.setBounds(260, 230, 90, 30);
+
+        jButton4.setText("GROUP");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4);
+        jButton4.setBounds(507, 160, 80, 30);
+
+        jButton5.setText("send");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5);
+        jButton5.setBounds(510, 223, 70, 30);
+        jPanel1.add(filename);
+        filename.setBounds(360, 50, 60, 20);
+
+        jLabel4.setText("filename");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(294, 50, 50, 14);
+
+        wrkdsp.setColumns(20);
+        wrkdsp.setRows(5);
+        jScrollPane1.setViewportView(wrkdsp);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(50, 130, 166, 96);
+
+        jLabel5.setText("work discription");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(50, 110, 74, 14);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void list1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_list1ActionPerformed
+
+    
+    }//GEN-LAST:event_list1ActionPerformed
+String s_user;
+    private void list1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseClicked
+          
+        s_user=list1.getSelectedItem();
+       
+       
+    }//GEN-LAST:event_list1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      work();
+    }//GEN-LAST:event_jButton1ActionPerformed
+private int status()
+{
+    int i=0;
+    //System.out.println("un value is "+s_user);
+     Dbconnection datbase=Dbconnection.getconnect();
+        Connection connect=datbase.validation();
+        try
+        {
+            Statement stmt=connect.createStatement();
+          ResultSet rst=stmt.executeQuery("select * from workstatus where uname='"+s_user+"' and status='pending'");
+          while(rst.next())
+          {
+           
+              i=120;
+          }
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    return i;
+}
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       int i=status();
+        //System.out.println("group value is "+node);
+       if(i==0)
+       {
+
+        List li=new ArrayList();
+         li=work();
+         String username=li.get(0).toString().trim();
+           Dbconnection datbase=Dbconnection.getconnect();
+        Connection connect=datbase.validation();
+//        try
+//        {
+//            Statement stmt=connect.createStatement();
+//          ResultSet rst=stmt.executeQuery("select * from workstatus where uname='"+username+"' and status='pending'");
+//          while(rst.next())
+//          {
+//              JOptionPane.showMessageDialog(rootPane, "Work assigned already");
+//          }
+//
+//        }catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+       
+       
+        String fname=li.get(1).toString().trim();
+        String staus=li.get(2).toString().trim();
+     
+        try
+        {
+           PreparedStatement ps=connect.prepareStatement("insert into workstatus values(?,?,?)");
+           ps.setString(1, username);
+           ps.setString(2, fname);
+           ps.setString(3, staus);
+           int j=ps.executeUpdate();
+           connect.close();
+        }catch(SQLException sqlx)
+        {
+            sqlx.printStackTrace();
+        }
+        }
+ else
+       {
+              JOptionPane.showMessageDialog(rootPane, "Work assigned already");
+ }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        list2.removeAll();
+        Dbconnection db=Dbconnection.getconnect();
+        Connection cnt=db.validation();
+        try
+        {
+        Statement stmt=cnt.createStatement();
+        ResultSet rs=stmt.executeQuery(" select * from workstatus where status='pending'");
+        while(rs.next())
+        {
+            String user= rs.getString(1).toString().trim();
+            String file=rs.getString(2).toString().trim();
+            String status=rs.getString(3).toString().trim();
+            list2.add(user+" - "+file+" - "+status);
+        }
+        }
+        catch(SQLException sql)
+        {
+            sql.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+Set node=new TreeSet();
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+String s=list1.getSelectedItem();
+int i=status();
+if(i==0)
+    {
+        node.add(s);
+      
+   }
+ else
+{
+    JOptionPane.showMessageDialog(rootPane, "work alrady assign");
+ }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       
+        Map mp=new TreeMap();
+        Set set=new TreeSet();
+        Iterator it=node.iterator();
+
+        while(it.hasNext())
+        {
+            String s=it.next().toString().trim();
+           
+           Dbconnection dbcn=Dbconnection.getconnect();
+         Connection cont=dbcn.validation();
+          String clientip = null;
+            try
+            {
+            Statement stmt=cont.createStatement();
+           ResultSet rs=stmt.executeQuery("select * from onuser where uname='"+s+"'");
+           while(rs.next())
+           {
+                mp.put(rs.getString(2).toString().trim(), rs.getString(3).toString().trim());
+               // clientip=rs.getString(3).toString().trim();
+           }
+            set=mp.keySet();
+            }catch(SQLException sql)
+        {
+                sql.printStackTrace();
+            }
+           // node.remove(s)    
+        }
+        Iterator iter=set.iterator();
+        while(iter.hasNext())
+        {
+            String port=iter.next().toString().trim();
+            String wrkipad=(String)mp.get(port);
+            int wrport=Integer.parseInt(port);
+            try
+            {
+               Socket socket=new Socket(wrkipad,wrport);
+               ObjectOutputStream oops=new ObjectOutputStream(socket.getOutputStream());
+               String work=filename.getText();
+               String wrdscrp=wrkdsp.getText();
+                 List li=new ArrayList();
+                li.add(work);
+                li.add(wrdscrp+" file name :"+work);
+                oops.writeObject(li);
+               
+            }catch(UnknownHostException unk)
+            {
+                unk.printStackTrace();
+            }catch(IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+
+       
+        }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+  
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                Server ss=new Server();
+                ss.setVisible(true);
+                ss.connect(ss);
+
+                
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField filename;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private java.awt.List list1;
+    private java.awt.List list2;
+    private javax.swing.JLabel sip;
+    private javax.swing.JTextArea wrkdsp;
+    // End of variables declaration//GEN-END:variables
+Thread t;
+ServerSocket ss;
+Socket so;
+    private void connect(Server ser)
+    {
+        try
+        {
+            ss=new ServerSocket(910);
+            t=new Thread(this);
+                    t.start();
+        }
+        catch(IOException io)
+        {
+            io.printStackTrace();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void run() {
+        try
+        {
+            Connection con;
+            Statement stmt;
+            ResultSet rst;
+            while(true)
+            {
+                   so=ss.accept();
+                   ObjectInputStream ois=new ObjectInputStream(so.getInputStream());
+                 
+                   li=(List) ois.readObject();
+                   String un=(String) li.get(0);
+                   String pass=(String) li.get(1);
+                  port =(String) li.get(2);
+                  clientip=(String)li.get(3);
+                  if(un.equals("finish"))
+                  {
+
+                    
+                    FileOutputStream fos=new FileOutputStream("D:\\server\\"+port,true);
+                    byte[] b= pass.getBytes();
+                    fos.write(b);
+                    fos.close();
+                     Dbconnection dbc=Dbconnection.getconnect();
+                          con=dbc.validation();
+                          try
+                          {
+                    //UPDATE workstatus SET status='finished' WHERE uname='user' AND filename='abc.txt'
+                         Statement stmt1=con.createStatement();
+                         stmt1.executeUpdate("update workstatus set status='"+un+"' where uname='"+clientip+"' and filename='"+port+"'");
+
+                          }catch(SQLException sqlex)
+                      {
+                          sqlex.printStackTrace();
+
+                      }
+                  }
+                   if(un.equals("signout"))
+                   {
+                      
+                        Dbconnection dbc=Dbconnection.getconnect();
+                          con=dbc.validation();
+
+                         try
+                         {
+             stmt=con.createStatement();
+             stmt.executeUpdate("delete from onuser where uname='"+pass+"'");
+            
+             con.close();
+             stmt.close();
+              con.close();
+            
+       }
+         catch(SQLException exp)
+         {
+             exp.printStackTrace();
+         }
+         catch(Exception e)
+       {
+           e.printStackTrace();
+       }
+                       list1.remove(pass);
+                   }
+                   else
+                   {
+                   
+                   logincheck(un,pass);
+                }
+            }
+
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException ex)
+         {
+            ex.printStackTrace();
+        }
+
+    }
+
+    private void logincheck(String un,String pas) {
+Dbconnection db=Dbconnection.getconnect();
+Connection con=db.validation();
+try
+{
+     int i=2;
+         Statement stmt=con.createStatement();
+         ResultSet rst=stmt.executeQuery("select * from Client  where username='"+un+"'and pass='"+pas+"'");      
+         while(rst.next())
+         {
+             String user=rst.getString(1).toString().trim();
+            
+             list1.add(user);
+              onuser(un,port,clientip);
+             i=10;
+        }
+         if(i==10)
+         {
+            try
+            {
+                  String j=new String(""+i);
+                ObjectOutputStream oos=new ObjectOutputStream(so.getOutputStream());
+                oos.writeObject(j);
+                con.close();
+            }catch(Exception e)
+            {
+             e.printStackTrace();
+            }
+         }
+        else
+         {
+              try
+            {    
+                   i=2;
+                 String j=new String(""+i);
+                ObjectOutputStream oos=new ObjectOutputStream(so.getOutputStream());
+                oos.writeObject(j);
+           
+
+            }catch(Exception e)
+            {
+
+            }          
+         }
+
+        }
+catch(SQLException sqe)
+{
+    sqe.printStackTrace();
+}
+    }
+ private int onuser(String uname,String port,String cip) {
+         int i=0;
+         ResultSet rst;
+       Dbconnection db=Dbconnection.getconnect();
+       Connection con=db.validation();
+      
+       try
+       {
+        Statement stmt=con.createStatement();
+         rst=stmt.executeQuery("select * from onuser where uname='"+uname+"'");
+        while(rst.next())
+        {
+            i=20;
+        }
+
+       }
+       catch(SQLException sqle)
+       {
+           sqle.printStackTrace();
+       }
+          if(i==20)
+          {
+              try
+              {
+                String j=new String(""+i);
+                ObjectOutputStream oos=new ObjectOutputStream(so.getOutputStream());
+                oos.writeObject(j);
+                list1.remove(uname);
+              }
+              catch(Exception e)
+              {
+                  e.printStackTrace();
+              }  
+          }else
+       try
+       {
+     PreparedStatement ps=con.prepareStatement("insert into onuser values(?,?,?)");
+     ps.setString(1, uname);
+     ps.setString(2, port);
+     ps.setString(3, cip);
+    int j=ps.executeUpdate();
+     con.close();
+       }
+       catch(Exception e)
+       {
+           e.printStackTrace();
+       }
+       return i;
+    }
+    List li =new ArrayList();
+  String un;
+  String port;
+  String clientip;
+}

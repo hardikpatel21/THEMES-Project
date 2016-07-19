@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>ITJ2EE01</display-name>
+		<welcome-file-list>		
+		<welcome-file>Home.jsp</welcome-file>
+	</welcome-file-list>
+	<filter>
+		<filter-name>Authentication_Flitter</filter-name>
+		<filter-class>Flitter.Authentication_Flitter</filter-class>
+	</filter>	
+	<filter-mapping>
+		<filter-name>Authentication_Flitter</filter-name>
+		<url-pattern>/CSP_Homepage</url-pattern>
+	</filter-mapping>	
+	<servlet>
+		<description>
+		</description>
+		<display-name>CSP_Homepage</display-name>
+		<servlet-name>CSP_Homepage</servlet-name>
+		<servlet-class>CSP.CSP_Homepage</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Upload</display-name>
+		<servlet-name>Upload</servlet-name>
+		<servlet-class>CSP.Upload</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description>
+		</description>
+		<display-name>Image_upload</display-name>
+		<servlet-name>Image_upload</servlet-name>
+		<servlet-class>CSP.Image_upload</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Software_upload</display-name>
+		<servlet-name>Software_upload</servlet-name>
+		<servlet-class>CSP.Software_upload</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Softwaredetails_upload</display-name>
+		<servlet-name>Softwaredetails_upload</servlet-name>
+		<servlet-class>CSP.Softwaredetails_upload</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description>
+		</description>
+		<display-name>Register</display-name>
+		<servlet-name>Register</servlet-name>
+		<servlet-class>user.Register</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Delete</display-name>
+		<servlet-name>Delete</servlet-name>
+		<servlet-class>CSP.Delete</servlet-class>
+	</servlet>
+	<!-- <servlet>
+		<description>
+		</description>
+		<display-name>User_homepage</display-name>
+		<servlet-name>User_homepage</servlet-name>
+		<servlet-class>user.User_homepage</servlet-class>
+	</servlet> -->
+	<servlet>
+		<description>
+		</description>
+		<display-name>sendrequest</display-name>
+		<servlet-name>sendrequest</servlet-name>
+		<servlet-class>user.sendrequest</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>User_homepage</display-name>
+		<servlet-name>User_homepage</servlet-name>
+		<servlet-class>user.User_homepage</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>slagenerate</display-name>
+		<servlet-name>slagenerate</servlet-name>
+		<servlet-class>CSP.slagenerate</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>onetimepassword</display-name>
+		<servlet-name>onetimepassword</servlet-name>
+		<servlet-class>user.onetimepassword</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Formonitor</display-name>
+		<servlet-name>Formonitor</servlet-name>
+		<servlet-class>CSP.Formonitor</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Serv</display-name>
+		<servlet-name>Serv</servlet-name>
+		<servlet-class>webservc.Serv</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ready</display-name>
+		<servlet-name>ready</servlet-name>
+		<servlet-class>user.ready</servlet-class>
+	</servlet>
+
+	
+	
+	<servlet-mapping>
+		<servlet-name>CSP_Homepage</servlet-name>
+		<url-pattern>/CSP_Homepage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Upload</servlet-name>
+		<url-pattern>/Upload</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Image_upload</servlet-name>
+		<url-pattern>/Image_upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Software_upload</servlet-name>
+		<url-pattern>/Software_upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Softwaredetails_upload</servlet-name>
+		<url-pattern>/Softwaredetails_upload</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Register</servlet-name>
+		<url-pattern>/Register</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Delete</servlet-name>
+		<url-pattern>/Delete</url-pattern>
+	</servlet-mapping>
+	<!-- <servlet-mapping>
+		<servlet-name>User_homepage</servlet-name>
+		<url-pattern>/User_homepage</url-pattern>
+	</servlet-mapping> -->
+<servlet-mapping>
+		<servlet-name>sendrequest</servlet-name>
+		<url-pattern>/sendrequest</url-pattern>
+	</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>User_homepage</servlet-name>
+	<url-pattern>/User_homepage</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>slagenerate</servlet-name>
+	<url-pattern>/slagenerate</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>onetimepassword</servlet-name>
+	<url-pattern>/onetimepassword</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>Formonitor</servlet-name>
+	<url-pattern>/Formonitor</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>Serv</servlet-name>
+	<url-pattern>/pay</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>ready</servlet-name>
+	<url-pattern>/ready</url-pattern>
+</servlet-mapping>
+	
+	<context-param>
+	<param-name>uploadedpath</param-name>
+	<param-value>D:\projectfinal\ITJCC05\CODING\Coding\ITJCC05\WebContent\UPLOADED_FILE</param-value>
+	</context-param>
+	
+	<context-param>
+	<param-name>slapath</param-name>
+	<param-value>D:\projectfinal\ITJCC05\CODING\Coding\ITJCC05\WebContent\SLA</param-value>
+	</context-param>
+	
+	
+
+</web-app>

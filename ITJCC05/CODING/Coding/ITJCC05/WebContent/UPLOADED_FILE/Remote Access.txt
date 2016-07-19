@@ -1,0 +1,4 @@
+http://forum.ragezone.com/f428/allow-mysql-remote-connections-604243/-Remote Access
+
+
+GRANT ALL PRIVILEGES ON *.* TO 'USERNAME'@'IP' IDENTIFIED BY 'PASSWORD';

@@ -1,0 +1,36 @@
+I.Installation of Java
+----------------------------------------
+1.Install the jdk 1.6.0 version in your specified location
+2.Second set the path value in the environment variables.
+3.For path settings follow the flow given below.
+4.Goto mycomputer--->rightclick---->select properties----->select advanced---->select environment variables
+5.After getting into environment variables edit the path variable or give new path variable(type yourself).
+
+
+6.Set the following path as the path variable value.
+path value---->C:\Program Files\Java\jdk1.6.0_07\bin
+
+ECLIPSE FORMAT
+---------------------------------------
+
+7.Restore Database connectivity in MY SQL
+8.Attach the JAR FILES in ECLIPSE
+9.ECLIPSE->Project->Configure Build path->Libraries->Add External JAR Files->ADD our JAR FILES
+
+10.First Run ITJCC05 Application and then run ITJCC05-Themis Application
+
+11.Run Bank application
+
+
+WAR FILE FORMAT
+---------------------------------------
+1.	INSTALL JDK.
+2.	INSTALL APACHE TOMCAT.
+3.	INSTALL MY-SQL DATABASE.
+4.	RESTORE DATABASE FILES.
+5.	RUN APACHE TOMCAT
+6.	DEPLOY WAR FILE
+		FIRST DEPLOY ITJCC05 WAR FILE
+		ITJCC05-THEMIS WAR FILE
+		BANK WAR FILE
+5. LAUNCH ALL DEPLOYED FILES.
